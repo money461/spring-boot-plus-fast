@@ -89,7 +89,7 @@ mapstruct | 1.3.1.Final | Object property replication tool |
 ## Getting started
 ### Clone spring-boot-plus
 ```bash
-git clone https://github.com/geekidea/spring-boot-plus.git
+git clone -b 1.5 https://github.com/geekidea/spring-boot-plus.git
 cd spring-boot-plus
 ```
 
