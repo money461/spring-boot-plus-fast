@@ -75,10 +75,6 @@ public class ShiroConfig {
      */
     private static final String JWT_FILTER_NAME = "jwtFilter";
     /**
-     * 请求路径过滤器名称
-     */
-    private static final String REQUEST_PATH_FILTER_NAME = "path";
-    /**
      * Shiro过滤器名称
      */
     private static final String SHIRO_FILTER_NAME = "shiroFilter";
@@ -242,16 +238,11 @@ public class ShiroConfig {
             String key = entry.getKey();
             String value = entry.getValue();
             String definition;
-            if (value.contains(REQUEST_PATH_FILTER_NAME)) {
-                definition = value;
-            } else {
-                String[] strings = value.split(",");
-                List<String> list = new ArrayList<>();
-                // 添加默认filter过滤
-                list.add(REQUEST_PATH_FILTER_NAME);
-                list.addAll(Arrays.asList(strings));
-                definition = String.join(",", list);
-            }
+            String[] strings = value.split(",");
+            List<String> list = new ArrayList<>();
+            // 添加默认filter过滤
+            list.addAll(Arrays.asList(strings));
+            definition = String.join(",", list);
             map.put(key, definition);
         }
         return map;
