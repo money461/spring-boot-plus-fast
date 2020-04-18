@@ -76,10 +76,20 @@ public class LoginController {
     @GetMapping("/getSysUserInfo")
     @ApiOperation(value = "根据token获取系统登陆用户信息", response = SysUserQueryVo.class)
     public ApiResult<SysUserQueryVo> getSysUser() throws Exception {
-        String token = JwtTokenUtil.getToken();
-        String tokenSha256 = DigestUtils.sha256Hex(token);
-        LoginSysUserVo loginSysUserVo = (LoginSysUserVo) redisTemplate.opsForValue().get(tokenSha256);
-        return ApiResult.ok(loginSysUserVo);
+        //        String token =  JwtTokenUtil.getToken();
+//        String tokenSha256 = DigestUtils.sha256Hex(token);
+//        LoginSysUserVo loginSysUserVo = (LoginSysUserVo) redisTemplate.opsForValue().get(tokenSha256);
+//        return ApiResult.ok(loginSysUserVo);
+
+        String json = "{\n" +
+                "    roles: ['admin'],\n" +
+                "    introduction: 'I am a super administrator',\n" +
+                "    avatar: 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif',\n" +
+                "    name: 'Super Admin'\n" +
+                "  }";
+        JSON array = JSON.parseObject(json);
+
+        return ApiResult.ok(array);
     }
 
     @PostMapping("/logout")
